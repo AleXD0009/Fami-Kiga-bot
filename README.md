@@ -1,6 +1,6 @@
-<h1 align="center">♡ 𝚂𝚢𝚕𝚙𝚑𝚊-𝙼𝙳 ♡</h1>
+<h1 align="center">Fami Kiga - Bot</h1>
 
 <br>
-<img src="https://i.pinimg.com/736x/53/53/f0/5353f0f80c3ae6705911d2e966195566.jpg" alt="a" width="400" height="230">
+<img src="https://i.pinimg.com/1200x/18/51/f4/1851f449394ed5b19611aff7adb8d24b.jpg" alt="a" width="1000" height="1000">
 </div>
 <br>
