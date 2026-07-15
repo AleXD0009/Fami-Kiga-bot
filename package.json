@@ -18,7 +18,7 @@
   ],
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@whiskeysockets/baileys": "^7.0.0-rc13",
+    "@whiskeysockets/baileys": "github:itsliaaa/baileys",
     "@StarlightsTeam/Scraper": "github:XdrianGM/Ba",
     "awesome-phonenumber": "^3.4.0",
     "axios": "*",
