@@ -1,33 +1,30 @@
-import { snapsave } from '@bochilteam/scraper';
-import fetch from 'node-fetch';
+import fetch from 'node-fetch'
 
-let handler = async (m, { conn, args }) => {
-if (!args[0]) return m.reply('*Ingresa un enlace de facebook*');
+let FM = async (m, { conn, args }) => {
+let usrname = conn.getName ? conn.getName(m.sender) : m.pushName || 'Usuario'
+if (!args[0]) return conn.reply(m.chat, `❀ 𝖧𝗈𝗅𝖺 *${usrname}*, 𝗂𝗇𝗀𝗋𝖾𝗌𝖺 𝗎𝗇 𝖾𝗇𝗅𝖺𝖼𝖾 𝖽𝖾 *𝖥𝖺𝖼𝖾𝖻𝗈𝗈𝗄* 𝗏á𝗅𝗂𝖽𝗈.`, m, rcanal)
 
 try {
-await m.react('🕓'); 
-const data = await snapsave(args[0]);
-
-if (!Array.isArray(data) || data.length === 0) return m.reply('*No se pudo descargar el video :/*');
-
-let video = data.find(v => v.resolution.includes('HD')) || data[0];
-
-if (video) {
-const videoBuffer = await fetch(video.url).then(res => res.buffer());
-
-await conn.sendMessage( m.chat, { video: videoBuffer, mimetype: 'video/mp4', fileName: 'video.mp4', caption: caption, mentions: [m.sender], },{ quoted: m });
-await m.react('✅'); 
-);
-} else {
-await m.react('❌'); 
+let res = await fetch(`${global.apist}/api/download/facebook?url=${encodeURIComponent(args[0])}`)
+let json = await res.json()
+if (!json.status || !json.data) {
+await m.react('❌')
 }
-} catch {
-await m.react('❌'); 
-}
-}
+let { title, hd, sd } = json.data
+let videoUrl = hd || sd
 
-handler.help = ['facebook *<link>*'];
-handler.tags = ['dl'];
-handler.command = ['fb', 'facebook', 'FB', 'FACEBOOK'];
+if (!videoUrl) {
+await m.react('❌')
+}
+let dl_url = await fetch(hd || sd).then(r => r.buffer())
+await conn.sendMessage(m.chat, { video: dl_url, mimetype: 'video/mp4', fileName: 'video.mp4', caption: null }, { quoted: m })
+} catch (error) {
+console.log(error)
+await m.react('❌')
+}}
 
-export default handler;
+FM.help = ['facebook ( Link )']
+FM.tags = ['dl']
+FM.command = ['fb', 'facebook', 'fbdl']
+
+export default FM
