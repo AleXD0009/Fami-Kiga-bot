@@ -25,6 +25,6 @@ await m.react('❌')
 
 FM.help = ['ytmp3 ( Link )']
 FM.tags = ['dl']
-FM.command = ['ytmp3']
+FM.command = ['ytmp3', 'yta', 'ytaudio']
 
 export default FM
