@@ -1,8 +1,9 @@
 import fetch from 'node-fetch'
 import { format } from 'util'
 
-let handler = async (m, { text, conn }) => {
-if (!/^https?:\/\//.test(text)) return conn.reply(m.chat, 'ingresa un link de una pagina', m)
+let FM = async (m, { text, conn }) => {
+let usrname = conn.getName ? conn.getName(m.sender) : m.pushName || 'Usuario'
+if (!/^https?:\/\//.test(text)) return conn.reply(m.chat, `❀ 𝖧𝗈𝗅𝖺 *${usrname}*, 𝗂𝗇𝗀𝗋𝖾𝗌𝖺 𝗎𝗇 𝖾𝗇𝗅𝖺𝖼𝖾 *𝗏á𝗅𝗂𝖽𝗈.*`, m, rcanal)
 let _url = new URL(text)
 let url = global.API(_url.origin, _url.pathname, Object.fromEntries(_url.searchParams.entries()), 'APIKEY')
 let res = await fetch(url)
@@ -19,12 +20,12 @@ txt = txt + ''
 m.reply(txt.slice(0, 65536) + '')
 }}
 
-handler.help = ['fetch'].map(v => v + ' *Link*')
-handler.tags = ['owner']
-handler.command = ['fetch', 'get']
-handler.rowner = true 
+FM.help = ['fetch'].map(v => v + ' ( Link )')
+FM.tags = ['owner']
+FM.command = ['fetch', 'get']
+FM.rowner = true 
 
-export default handler
+export default FM
 
 global.APIs = {}
 global.APIKeys = {}
