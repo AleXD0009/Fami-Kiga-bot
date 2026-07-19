@@ -8,8 +8,7 @@ try {
 let res = await fetch(`${global.apist}/api/download/tiktok?url=${encodeURIComponent(args[0])}`)
 let json = await res.json()
 let { title, author, stats, type, download, slides, music, cover } = json.data
-let txt = `ㅤ𐴒𐴑𐴏ㅤ✿ུㅤ( 𝗍𝗂𝗄𝗍𝗈𝗄 𝖽𝗈𝗐𝗇𝗅𝗈𝖺𝖽𝖾𝗋 )
-
+let txt = `ㅤ𐴒𐴑𐴏ㅤ✿ུㅤ*( 𝗍𝗂𝗄𝗍𝗈𝗄 𝖽𝗈𝗐𝗇𝗅𝗈𝖺𝖽𝖾𝗋 )*
 ㅤㅤ ꕥ  *𝖳í𝗍𝗎𝗅𝗈* : ${title || 'Sin título'}
 ㅤㅤ ꕥ  *𝖠𝗎𝗍𝗈𝗋* : ${author?.nickname || 'Desconocido'}
 ㅤㅤ ✤  *𝖵𝗂𝗌𝗍𝖺𝗌* : ${stats?.views || '0'}
