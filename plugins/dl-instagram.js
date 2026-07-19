@@ -2,13 +2,11 @@ import fetch from 'node-fetch'
 
 let FM = async (m, { conn, args }) => {
 let usrname = conn.getName ? conn.getName(m.sender) : m.pushName || 'Usuario'
-
 if (!args[0]) return conn.reply(m.chat, `❀ 𝖧𝗈𝗅𝖺 *${usrname}*, 𝗂𝗇𝗀𝗋𝖾𝗌𝖺 𝗎𝗇 𝖾𝗇𝗅𝖺𝖼𝖾 𝖽𝖾 *𝖨𝗇𝗌𝗍𝖺𝗀𝗋𝖺𝗆* 𝗏á𝗅𝗂𝖽𝗈.`, m, rcanal)
 
 try {
 let res = await fetch(`${global.apist}/api/download/instagram?url=${encodeURIComponent(args[0])}`)
 let json = await res.json()
-if (!json.status || !json.data || !json.data.result || json.data.result.length === 0) { await m.react('❌') }
 let { result } = json.data
 if (result.length === 1) {
 let item = result[0]
